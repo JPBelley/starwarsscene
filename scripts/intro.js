@@ -27,7 +27,7 @@ animationStep2.addEventListener('animationend', () => {
   headline.classList.add('animation--step-2');
   setTimeout(() => {
     document.querySelector('.intro').classList.add('fade-out');
-  }, 760);
+  }, 750);
   setTimeout(() => {
     headline.classList.remove('animation--step-2');
     headline.classList.add('animation--step-3');
