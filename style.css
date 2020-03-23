@@ -2,4 +2,117 @@ html,
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.intro,
+.mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-size: 2.5rem;
+  padding: 0 30px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards cubic-bezier(0.755, 0.05, 0.855, 0.06);
+}
+
+@media (max-width: 800px) {
+  .intro,
+  canvas {
+    display: none;
+  }
+}
+
+@media (min-width: 801px) {
+  .mobile {
+    display: none;
+  }
+
+  .intro {
+    background-color: #000;
+    z-index: 1;
+    position: absolute;
+  }
+
+  .intro h1 {
+    font-size: 2.5rem;
+  }
+}
+
+
+/* Introduction animation */
+
+h1 {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 0 10px;
+  text-transform: uppercase;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 50px;
+  font-weight: 100;
+  color: #fff;
+}
+
+h1 span {
+  display: inline-block;
+  opacity: 0;
+  animation: .5s fadeIn forwards;
+  letter-spacing: 1.7px;
+}
+
+h1::before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  height: 100%;
+  width: 0%;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: .6s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+}
+
+.animation--step-2::before {
+  width: 100%;
+}
+
+.animation--step-3 span {
+  opacity: 0;
+  animation: none;
+}
+
+.animation--step-3::before {
+  margin-left: auto;
+  width: 0%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  } 
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: translateX(0);
+    /* opacity: 1; */
+  } 
+  to {
+    /* opacity: 0; */
+    transform: translateX(100%);
+  }
 }
