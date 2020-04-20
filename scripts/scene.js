@@ -14,6 +14,24 @@ import * as THREE from 'https://jpbelley.github.io/starwarsscene/build/three.mod
 
 import { OBJLoader } from 'https://jpbelley.github.io/starwarsscene/jsm/loaders/OBJLoader.js';
 
+var THREEx = THREEx || {}
+
+THREEx.Planets = {}
+
+THREEx.Planets.baseURL = '../'
+
+THREEx.Planets.createEarth = function () {
+  var geometry = new THREE.SphereGeometry(0.45, 32, 32)
+  var material = new THREE.MeshPhongMaterial({
+    map: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + './material/texture/4k_makemake_fictional.jpg'),
+    bumpScale: 0.5,
+    specularMap: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + './material/texture/4k_makemake_fictional_Specular.jpg'),
+    specular: new THREE.Color('grey'),
+  })
+  var mesh = new THREE.Mesh(geometry, material)
+  return mesh
+}
+
 function init() {
 
   container = document.getElementById('scene');
@@ -28,25 +46,24 @@ function init() {
   var ambientLight = new THREE.AmbientLight(0xcccccc, 0.50);
   scene.add(ambientLight);
 
-  // create a sphere
-  var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
-  var sphereMaterial = new THREE.MeshLambertMaterial({
-    color: 0xdddddd,
-  });
-  var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-  sphere.position.set(-600, -975, 200);
-  sphere.scale.x = + 250;
-  sphere.scale.y = + 250;
-  sphere.scale.z = + 250;
-  scene.add(sphere);
+  // Create planet
+  var planetMesh = THREEx.Planets.createEarth()
+  planetMesh.position.set(-200, -395, 325);
+  // planetMesh.position.y = - 95;
+  // planetMesh.position.x = - 150;
+  // planetMesh.position.z = + 225;
+  planetMesh.scale.x = + 750;
+  planetMesh.scale.y = + 750;
+  planetMesh.scale.z = + 750;
+  scene.add(planetMesh)
 
   // Spolight
-  var spotLight = new THREE.SpotLight(0xFFFFFF);
+  var spotLight = new THREE.DirectionalLight(0xFFFFFF);
   spotLight.position.set(-40, 40, -15);
   spotLight.castShadow = true;
   spotLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
-  spotLight.shadow.camera.far = 130;
-  spotLight.shadow.camera.near = 40;
+  // spotLight.shadow.camera.far = 130;
+  // spotLight.shadow.camera.near = 40;
 
   scene.add(spotLight);
 
