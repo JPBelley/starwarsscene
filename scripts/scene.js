@@ -18,14 +18,14 @@ var THREEx = THREEx || {}
 
 THREEx.Planets = {}
 
-THREEx.Planets.baseURL = '../'
+THREEx.Planets.baseURL = 'https://jpbelley.github.io/starwarsscene'
 
 THREEx.Planets.createEarth = function () {
   var geometry = new THREE.SphereGeometry(0.45, 32, 32)
   var material = new THREE.MeshPhongMaterial({
-    map: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + './material/texture/4k_makemake_fictional.jpg'),
+    map: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + '/material/texture/4k_makemake_fictional.jpg'),
     bumpScale: 0.5,
-    specularMap: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + './material/texture/4k_makemake_fictional_Specular.jpg'),
+    specularMap: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL + '/material/texture/4k_makemake_fictional_Specular.jpg'),
     specular: new THREE.Color('grey'),
   })
   var mesh = new THREE.Mesh(geometry, material)
